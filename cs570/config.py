@@ -83,9 +83,7 @@ MODELS = {
     #('lr', LogisticRegression(fit_intercept=True, solver='newton-cg',
      #                         multi_class='multinomial')),
     #('rf', RandomForestClassifier(random_state=RANDOM_STATE)),
-    ('xgb', XGBRegressor(n_estimators=100, colsample_bytree=0.6, colsample_bylevel=0.6,
-                         subsample=0.5, learning_rate=0.1,
-                         max_depth=2, reg_alpha=0.6, min_child_weight=1)),
+    ('xgb', XGBRegressor()),
 
 }
 
@@ -128,5 +126,8 @@ META_PARAMETERS = {
     },
     'xgb': {
         'n_estimators': [10 , 20],
+        'max_depth':[5,10,15,20,25],
+        'min_child_weight':[1,3,5,7],
+
     }
 }
