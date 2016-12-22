@@ -6762,3 +6762,19 @@ Train data shape: 160000, 52
 | scaler_int           | xgb        | 0.39930    | 0.00102    | T  | colsample_bylevel=0.6, nthread=-1, subsample=0.5, colsample_bytree=0.6, n_estimators=20, min_child_weight=1, silent=True, max_depth=2, base_score=0.5, reg_alpha=0.6, objective=reg:linear, scale_pos_weight=1, missing=nan, learning_rate=0.1, reg_lambda=1
 
 Total execution time: 1.0361759305000304 minutes
+
+
+============================================================================================================================================
+Project: cs570
+Date: Thu Dec 22 11:59:39 2016
+Random state: 2016
+Target transform: None
+Parameter optimization: True
+Train data shape: 160000, 52
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| scaler_int           | xgb        | 0.39930    | 0.00102    | T  | objective=reg:linear, subsample=0.5, max_depth=2, silent=True, colsample_bytree=0.6, scale_pos_weight=1, nthread=-1, min_child_weight=1, n_estimators=20, learning_rate=0.1, colsample_bylevel=0.6, base_score=0.5, reg_lambda=1, reg_alpha=0.6, missing=nan
+
+Total execution time: 1.1804675181706747 minutes

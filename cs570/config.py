@@ -23,15 +23,15 @@ MODELS_DIR = 'cs570/models'
 PREDICTIONS_DIR = 'cs570/submissions'
 PREDICTIONS_PREPROCESS = [ DummyId() ]
 PREDICTION_COLUMNS = ['id']
-NEED_PROBA = True
+NEED_PROBA = False
 
 TARGET = "y"
 TARGET_TRANSFORM = None
 
-#SCORER = make_scorer(median_absolute_error, greater_is_better=False)
-SCORER = make_scorer(log_loss,
-                     needs_proba=True,
-                     greater_is_better=False)
+SCORER = make_scorer(median_absolute_error, greater_is_better=False)
+#SCORER = make_scorer(log_loss,
+ #                    needs_proba=True,
+  #                   greater_is_better=False)
 
 RANDOM_STATE = 2016
 JOBS = 2
@@ -56,13 +56,13 @@ PREPROCESSING = [
         ('eliminoNaN',Mi_EliminaNaN()),
 
         ('LabelTransform',LabelTransform( columns=['x24','x29','x30'])),
-        ('inter', InteractionTransform(
-            interactions=['sum'],
-            columns=['x%d' % i for i in range(20, 30)])),
+        #('inter', InteractionTransform(
+         #   interactions=['sum'],
+          #  columns=['x%d' % i for i in range(20, 30)])),
         #('std', StandardScaler()),
-        ('fs', TreeBased('extra_trees_regressor', 20, 20)),
+        #('fs', TreeBased('extra_trees_regressor', 20, 20)),
         #('GuardaDatosProcesados', GuardaDatosProcesados()),
-        ('ModelStakingLevel1', ModelStakingLevel1()),
+        #('ModelStakingLevel1', ModelStakingLevel1()),
         #('GuardaDatosProcesados2', GuardaDatosProcesados(nombre="cs570con20colum2.csv")),
     ])
 
@@ -82,10 +82,10 @@ PREPROCESSING = [
 MODELS = {
     #('lr', LogisticRegression(fit_intercept=True, solver='newton-cg',
      #                         multi_class='multinomial')),
-    ('rf', RandomForestClassifier(random_state=RANDOM_STATE)),
-    #('xgb', XGBRegressor(n_estimators=100, colsample_bytree=0.6, colsample_bylevel=0.6,
-     #                    subsample=0.5, learning_rate=0.1,
-      #                   max_depth=2, reg_alpha=0.6, min_child_weight=1)),
+    #('rf', RandomForestClassifier(random_state=RANDOM_STATE)),
+    ('xgb', XGBRegressor(n_estimators=100, colsample_bytree=0.6, colsample_bylevel=0.6,
+                         subsample=0.5, learning_rate=0.1,
+                         max_depth=2, reg_alpha=0.6, min_child_weight=1)),
 
 }
 
