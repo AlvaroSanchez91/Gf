@@ -21,7 +21,7 @@ from feature_selection import TreeBased
 import persistance
 import os
 
-from feature_transform import LogTransform , ImputerTransform, ModelStakingLevel1, ModelStakingLevel1_regresor
+from feature_transform import LogTransform , ImputerTransform, ModelStakingLevel1, ModelStakingLevel1_regresor, LabelTransform, Drop_labels, filter_remove
 
 DATA_DIR = 'allstate/data'
 DATA_READER = persistance.FileReader
@@ -47,28 +47,28 @@ FEATURE_SELECTION_N = 20
 PREPROCESSING = [
 
     ('select20_modelstaking', [
-            ('fs', TreeBased('extra_trees_regressor', 20, 20)),
+            #('Drop_labels',Drop_labels()),
+            #('eliminoNaN',ImputerTransform()),
+            #('LabelTransform', LabelTransform(columns=['cat%d' % i for i in range(1, 117)])),
+            #('fs', TreeBased('extra_trees_regressor', 20, 20)),
             #('inter', InteractionTransform(
                 #interactions=['sum'],
                 #columns=['cat%d' % i for i in range(20, 30)])),
             #('eliminoNaN',ImputerTransform()),
-            ('ModelStakingLevel1_regresor', ModelStakingLevel1_regresor()),
+            #('ModelStakingLevel1_regresor', ModelStakingLevel1_regresor()),
     ] ),
 
 ]
-
 MODELS = {
     #('lr', LinearRegression(fit_intercept=True)),
-    #('xgb', XGBRegressor(n_estimators=100, colsample_bytree=0.6, colsample_bylevel=0.6,
-     #                            subsample=0.5, learning_rate=0.1,
-      #                           max_depth=2, reg_alpha=0.6, min_child_weight=1))
+    #('xgb', XGBRegressor()),
 
     #('lasso', Lasso(fit_intercept=True)),
     #('ridge', Ridge(fit_intercept=True)),
     #('elastic_net', ElasticNet(fit_intercept=True)),
     #('bayes_ridge', BayesianRidge(fit_intercept=True)),
     #('SGD', SGDRegressor()),
-    ('random_forest', RandomForestRegressor()),
+    #('random_forest', RandomForestRegressor()),
     #('gb', GradientBoostingRegressor()),
     #('KNN', KNeighborsRegressor(n_neighbors=10)),
 
@@ -113,8 +113,20 @@ META_PARAMETERS = {
     },
 
     'xgb': {
-        'n_estimators': [10 , 20],
+        #'n_estimators': [10 , 20],
+        'min_child_weight':[1],
+        #'eta': [0.01],
+        'colsample_bytree': [0.5],
+        'max_depth': [12],
+        'subsample': [0.8],
+        'reg_alpha': [1],
+        'gamma': [1],
+        'silent': [1],
+        #'verbose_eval': [True],
+        #'seed': RANDOM_STATE
     },
+
+
 
     'KNN': {
         'n_neighbors': [5],

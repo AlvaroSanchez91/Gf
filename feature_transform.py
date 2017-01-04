@@ -19,6 +19,8 @@ from sklearn.linear_model import ElasticNet
 from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsRegressor
 from xgboost import XGBRegressor
+
+from helpers import  split_data
 #hasta aqui
 
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -169,6 +171,58 @@ class ModelStakingLevel1_regresor(BaseEstimator, TransformerMixin):
 
 
         return X2
+
+#La siguiente clase la defino para eliminar la columna id
+class Drop_columns(BaseEstimator, TransformerMixin):
+
+    def __init__(self, columns=['id']):
+        self.columns = columns
+
+
+    def fit(self, X, y):
+        return self
+
+    def transform(self, X):
+        return X.drop(self.columns,1)
+
+#la siguiente clase la defino para eliminar las etiquetas que no aparezcan en train y en test (no solo en uno de ellos), para una caracteristica.
+#necesitaremos, ademas, la siguiente función (en realidad se puede hacer directamente, pero parece mas complicado si no queremos hacer bucles)
+def filter_remove(x,remove):
+    if x in remove:
+        return np.nan
+    return x
+
+class Drop_labels(BaseEstimator, TransformerMixin):
+
+    def __init__(self, columns=None):
+        self.columns=columns
+
+    def fit(self, X, y):
+        return self
+
+    def filter_remove(x):
+        if x in self.remove:
+            return np.nan
+        return x
+
+    def transform(self, X):
+        config = get_config()
+        data_2, processed_2 = config.DATA_READER.read()
+        X_2, y_2, test_2 = split_data(data_2)
+
+        for column in list(X.select_dtypes(include=['object']).columns):
+            if not X_2[column].nunique() == test_2[column].nunique()==y_2[column].nunique():
+                set_X_2 = set(X_2[column].unique())
+                set_y_2 = set(y_2[column].unique())
+                set_test_2 = set(test_2[column].unique())
+                remove_X_2 = set_X_2 - (set_X_2.intersection(set_test_2)).intersection(set_y_2)
+                remove_test_2 = set_test_2 - (set_X_2.intersection(set_test_2)).intersection(set_y_2)
+                remove_y_2 = set_y_2 - (set_X_2.intersection(set_test_2)).intersection(set_y_2)
+                remove = remove_X_2.union(remove_test_2).union(remove_y_2)
+
+                X[column] = X[column].apply(lambda x: filter_cat(x,remove), 1)
+        return X
+
 
 
 class strings_a_floats(BaseEstimator, TransformerMixin):
