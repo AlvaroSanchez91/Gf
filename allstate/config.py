@@ -46,7 +46,11 @@ FEATURE_SELECTION_N = 20
 
 PREPROCESSING = [
 
-    ('limpia_y_modelStaking', [
+    ('select20_modelstaking', [
+            ('fs', TreeBased('extra_trees_regressor', 20, 20)),
+            #('inter', InteractionTransform(
+                #interactions=['sum'],
+                #columns=['cat%d' % i for i in range(20, 30)])),
             #('eliminoNaN',ImputerTransform()),
             ('ModelStakingLevel1_regresor', ModelStakingLevel1_regresor()),
     ] ),
@@ -113,14 +117,10 @@ META_PARAMETERS = {
     },
 
     'KNN': {
-        'n_neighbors': [5, 10, 20],
-        'algorithm': ['ball_tree', 'kd_tree'],
-        'leaf_size': [20, 30],
-        'p': [1, 2]
+        'n_neighbors': [5],
     },
     'elastic_net':{
         'alpha':[0,0.3,0.7,1],
-        'l1_ratio':[0,0.3,0.7,1],
 
     }
 }

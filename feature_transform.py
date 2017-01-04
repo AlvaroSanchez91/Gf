@@ -13,7 +13,12 @@ from sklearn.svm import SVC
 #clf = svm.SVC()
 from sklearn.ensemble import BaggingClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestRegressor
 
+from sklearn.linear_model import ElasticNet
+from sklearn.linear_model import LinearRegression
+from sklearn.neighbors import KNeighborsRegressor
+from xgboost import XGBRegressor
 #hasta aqui
 
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -130,10 +135,10 @@ class ModelStakingLevel1_regresor(BaseEstimator, TransformerMixin):
     def fit(self, X, y):
         self.my_rf_algoritm=RandomForestRegressor().fit(X,y).predict
         self.my_GradientBoostingRegressor_algoritm=GradientBoostingRegressor().fit(X,y).predict
-        self.my_ElasticNet_algoritm=ElasticNet(tol=0.0001, max_iter=1000, selection=cyclic, copy_X=True, fit_intercept=True).fit(X,y).predict
+        self.my_ElasticNet_algoritm=ElasticNet().fit(X,y).predict
         self.my_linearRegressor_algoritm=LinearRegression().fit(X,y).predict
-        self.my_XGBregresor_algoritm=XGBRegressor(missing=nan, scale_pos_weight=1, objective=reg:linear, subsample=0.5, max_depth=2, n_estimators=20, nthread=-1, reg_alpha=0.6, min_child_weight=1, learning_rate=0.1, colsample_bytree=0.6, silent=True, reg_lambda=1, base_score=0.5, colsample_bylevel=0.6).fit(X,y).predict
-        self.my_KNN_algoritm=KNeighborsRegressor(n_neighbors=10).fit(X,y).predict
+        self.my_XGBregresor_algoritm=XGBRegressor().fit(X,y).predict
+        self.my_KNN_algoritm=KNeighborsRegressor().fit(X,y).predict
 
 
         return self
@@ -157,10 +162,10 @@ class ModelStakingLevel1_regresor(BaseEstimator, TransformerMixin):
 
         X2['prediction_rf'] = prediction_rf
         X2['prediction_GradientBoostingRegressor'] = prediction_GradientBoostingRegressor
-        X2['prediction_ElasticNet'] = prediction_AdaBoostClassifier
-        X2['prediction_linearRegressor'] = prediction_SVC
-        X2['prediction_XGBregresor'] = prediction_BaggingClassifier
-        X2['prediction_KNN'] = prediction_LogisticRegression
+        X2['prediction_ElasticNet'] = prediction_ElasticNet
+        X2['prediction_linearRegressor'] = prediction_linearRegressor
+        X2['prediction_XGBregresor'] = prediction_XGBregresor
+        X2['prediction_KNN'] = prediction_KNN
 
 
         return X2

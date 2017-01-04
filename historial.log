@@ -7112,3 +7112,74 @@ Train data shape: 188318, 133
 | limpia_y_modelStaking | elastic_net | 0.37978    | 0.00162    | T  | tol=0.0001, max_iter=1000, selection=cyclic, copy_X=True, fit_intercept=True
 
 Total execution time: 45.856472837924954 minutes
+
+
+============================================================================================================================================
+Project: allstate
+Date: Wed Jan  4 01:23:19 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+
+============================================================================================================================================
+Project: allstate
+Date: Wed Jan  4 01:30:32 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+
+============================================================================================================================================
+Project: allstate
+Date: Wed Jan  4 02:06:27 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+
+============================================================================================================================================
+Project: allstate
+Date: Wed Jan  4 09:21:49 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| modelStaking         | random_forest | 0.39427    | 0.00164    | T  | max_features=auto, n_estimators=1, max_depth=6, min_samples_split=0.6, min_samples_leaf=5, n_jobs=1, bootstrap=True, criterion=mse
+
+Total execution time: 34.94681551059087 minutes
+
+
+============================================================================================================================================
+Project: allstate
+Date: Wed Jan  4 11:36:58 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| select20_modelstaking | random_forest | 0.42649    | 0.01436    | T  | max_features=auto, min_samples_split=0.6, bootstrap=True, max_depth=6, n_estimators=1, n_jobs=1, min_samples_leaf=5, criterion=mse
+
+Total execution time: 18.593146800994873 minutes
