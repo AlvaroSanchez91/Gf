@@ -21,7 +21,7 @@ from feature_selection import TreeBased
 import persistance
 import os
 
-from feature_transform import LogTransform
+from feature_transform import LogTransform , ImputerTransform, ModelStakingLevel1, ModelStakingLevel1_regresor
 
 DATA_DIR = 'allstate/data'
 DATA_READER = persistance.FileReader
@@ -40,32 +40,38 @@ TARGET_TRANSFORM = LogTransform
 SCORER = make_scorer(median_absolute_error, greater_is_better=False)
 
 RANDOM_STATE = 2016
-JOBS = 1
+JOBS = 2
 
 FEATURE_SELECTION_N = 20
 
 PREPROCESSING = [
 
-    ('none', [] ),
+    ('limpia_y_modelStaking', [
+            #('eliminoNaN',ImputerTransform()),
+            ('ModelStakingLevel1_regresor', ModelStakingLevel1_regresor()),
+    ] ),
 
 ]
 
 MODELS = {
-    ('lr', LinearRegression(fit_intercept=True)),
-    ('xgb', XGBRegressor(n_estimators=100, colsample_bytree=0.6, colsample_bylevel=0.6,
-                                 subsample=0.5, learning_rate=0.1,
-                                 max_depth=2, reg_alpha=0.6, min_child_weight=1))
+    #('lr', LinearRegression(fit_intercept=True)),
+    #('xgb', XGBRegressor(n_estimators=100, colsample_bytree=0.6, colsample_bylevel=0.6,
+     #                            subsample=0.5, learning_rate=0.1,
+      #                           max_depth=2, reg_alpha=0.6, min_child_weight=1))
 
     #('lasso', Lasso(fit_intercept=True)),
     #('ridge', Ridge(fit_intercept=True)),
     #('elastic_net', ElasticNet(fit_intercept=True)),
     #('bayes_ridge', BayesianRidge(fit_intercept=True)),
     #('SGD', SGDRegressor()),
-    #('random_forest', RandomForestRegressor()),
+    ('random_forest', RandomForestRegressor()),
     #('gb', GradientBoostingRegressor()),
     #('KNN', KNeighborsRegressor(n_neighbors=10)),
 
 }
+
+
+
 
 FOLDS = {
     'generator': KFold,
@@ -111,6 +117,11 @@ META_PARAMETERS = {
         'algorithm': ['ball_tree', 'kd_tree'],
         'leaf_size': [20, 30],
         'p': [1, 2]
+    },
+    'elastic_net':{
+        'alpha':[0,0.3,0.7,1],
+        'l1_ratio':[0,0.3,0.7,1],
+
     }
 }
 

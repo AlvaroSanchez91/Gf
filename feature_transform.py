@@ -116,6 +116,56 @@ class ModelStakingLevel1(BaseEstimator, TransformerMixin):
 
         return X2
 
+class ModelStakingLevel1_regresor(BaseEstimator, TransformerMixin):
+
+    def __init__(self, columns=None):
+        self.my_rf_algoritm=None
+        self.my_GradientBoostingRegressor_algoritm=None
+        self.my_ElasticNet_algoritm=None
+        self.my_linearRegressor_algoritm=None
+        self.my_XGBregresor_algoritm=None
+        self.my_KNN_algoritm=None
+
+
+    def fit(self, X, y):
+        self.my_rf_algoritm=RandomForestRegressor().fit(X,y).predict
+        self.my_GradientBoostingRegressor_algoritm=GradientBoostingRegressor().fit(X,y).predict
+        self.my_ElasticNet_algoritm=ElasticNet(tol=0.0001, max_iter=1000, selection=cyclic, copy_X=True, fit_intercept=True).fit(X,y).predict
+        self.my_linearRegressor_algoritm=LinearRegression().fit(X,y).predict
+        self.my_XGBregresor_algoritm=XGBRegressor(missing=nan, scale_pos_weight=1, objective=reg:linear, subsample=0.5, max_depth=2, n_estimators=20, nthread=-1, reg_alpha=0.6, min_child_weight=1, learning_rate=0.1, colsample_bytree=0.6, silent=True, reg_lambda=1, base_score=0.5, colsample_bylevel=0.6).fit(X,y).predict
+        self.my_KNN_algoritm=KNeighborsRegressor(n_neighbors=10).fit(X,y).predict
+
+
+        return self
+
+    def transform(self, X):
+        #model_rf = pk.load(open("cs570/models\\rf_0.32241.pk", "rb"))
+        #X_sin_y=X.drop('y', axis=1,inplace=True).copy()
+        #predict = model_rf.predict(X_sin_y)
+        #X['predict_rf'] = predict
+
+        #X_guardada=pd.read_csv('cs570con20colum.csv')
+        #y_guardada=pd.read_csv('Ycs570.csv')
+        X2=pd.DataFrame(X)
+        prediction_rf=self.my_rf_algoritm(X)
+        prediction_GradientBoostingRegressor=self.my_GradientBoostingRegressor_algoritm(X)
+        prediction_ElasticNet=self.my_ElasticNet_algoritm(X)
+        prediction_linearRegressor=self.my_linearRegressor_algoritm(X)
+        prediction_XGBregresor=self.my_XGBregresor_algoritm(X)
+        prediction_KNN=self.my_KNN_algoritm(X)
+
+
+        X2['prediction_rf'] = prediction_rf
+        X2['prediction_GradientBoostingRegressor'] = prediction_GradientBoostingRegressor
+        X2['prediction_ElasticNet'] = prediction_AdaBoostClassifier
+        X2['prediction_linearRegressor'] = prediction_SVC
+        X2['prediction_XGBregresor'] = prediction_BaggingClassifier
+        X2['prediction_KNN'] = prediction_LogisticRegression
+
+
+        return X2
+
+
 class strings_a_floats(BaseEstimator, TransformerMixin):
 
     def __init__(self, columns=None):

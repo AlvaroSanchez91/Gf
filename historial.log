@@ -6794,3 +6794,321 @@ Train data shape: 160000, 52
 | scaler_int           | xgb        | 0.10144    | 0.00596    | T  | scale_pos_weight=1, base_score=0.5, n_estimators=20, max_depth=25, nthread=-1, min_child_weight=1, objective=reg:linear, subsample=1, colsample_bytree=1, colsample_bylevel=1, missing=nan, reg_lambda=1, learning_rate=0.1, silent=True
 
 Total execution time: 99.2497434258461 minutes
+
+
+============================================================================================================================================
+Project: allstate
+Date: Mon Jan  2 23:14:25 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| none                 | xgb        | 0.89471    | 0.00081    | T  | objective=reg:linear, nthread=-1, silent=True, reg_alpha=0.6, missing=nan, colsample_bytree=0.6, subsample=0.5, min_child_weight=1, n_estimators=20, scale_pos_weight=1, max_depth=2, learning_rate=0.1, base_score=0.5, reg_lambda=1, colsample_bylevel=0.6
+| none                 | lr         | 0.38346    | 0.00124    | T  | copy_X=True, n_jobs=1                                                 
+
+Total execution time: 1.0833952983220418 minutes
+
+
+============================================================================================================================================
+Project: allstate_desde_cero
+Date: Mon Jan  2 23:25:59 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| none                 | xgb        | 0.89471    | 0.00081    | T  | subsample=0.5, max_depth=2, nthread=-1, scale_pos_weight=1, reg_lambda=1, missing=nan, reg_alpha=0.6, colsample_bylevel=0.6, colsample_bytree=0.6, objective=reg:linear, base_score=0.5, min_child_weight=1, n_estimators=20, silent=True, learning_rate=0.1
+| none                 | lr         | 0.38346    | 0.00124    | T  | copy_X=True, n_jobs=1                                                 
+
+Total execution time: 0.8657495180765787 minutes
+
+
+============================================================================================================================================
+Project: allstate_desde_cero
+Date: Mon Jan  2 23:28:38 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| none                 | xgb        | 0.89471    | 0.00081    | T  | objective=reg:linear, learning_rate=0.1, nthread=-1, missing=nan, base_score=0.5, max_depth=2, min_child_weight=1, n_estimators=20, scale_pos_weight=1, subsample=0.5, reg_alpha=0.6, colsample_bytree=0.6, silent=True, reg_lambda=1, colsample_bylevel=0.6
+
+Total execution time: 0.5774996956189473 minutes
+Backend Qt5Agg is interactive backend. Turning interactive mode on.
+
+
+============================================================================================================================================
+Project: allstate_desde_cero
+Date: Mon Jan  2 23:32:47 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| none                 | xgb        | 0.89471    | 0.00081    | T  | objective=reg:linear, reg_lambda=1, nthread=-1, learning_rate=0.1, colsample_bylevel=0.6, base_score=0.5, silent=True, reg_alpha=0.6, colsample_bytree=0.6, subsample=0.5, n_estimators=20, min_child_weight=1, scale_pos_weight=1, missing=nan, max_depth=2
+
+Total execution time: 0.577299686272939 minutes
+
+
+============================================================================================================================================
+Project: allstate_desde_cero
+Date: Mon Jan  2 23:45:30 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| none                 | xgb        | 0.89471    | 0.00081    | T  | max_depth=2, learning_rate=0.1, silent=True, nthread=-1, reg_alpha=0.6, min_child_weight=1, reg_lambda=1, colsample_bytree=0.6, objective=reg:linear, scale_pos_weight=1, base_score=0.5, subsample=0.5, n_estimators=20, missing=nan, colsample_bylevel=0.6
+Backend Qt5Agg is interactive backend. Turning interactive mode on.
+
+
+============================================================================================================================================
+Project: allstate_desde_cero
+Date: Mon Jan  2 23:59:36 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| none                 | xgb        | 0.89471    | 0.00081    | T  | base_score=0.5, nthread=-1, reg_alpha=0.6, reg_lambda=1, missing=nan, n_estimators=20, max_depth=2, scale_pos_weight=1, subsample=0.5, min_child_weight=1, colsample_bytree=0.6, silent=True, objective=reg:linear, learning_rate=0.1, colsample_bylevel=0.6
+
+
+============================================================================================================================================
+Project: allstate_desde_cero
+Date: Tue Jan  3 00:22:11 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+
+============================================================================================================================================
+Project: allstate_desde_cero
+Date: Tue Jan  3 00:50:11 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+
+============================================================================================================================================
+Project: allstate_desde_cero
+Date: Tue Jan  3 01:06:47 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+
+============================================================================================================================================
+Project: allstate_desde_cero
+Date: Tue Jan  3 01:33:21 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+
+============================================================================================================================================
+Project: allstate_desde_cero
+Date: Tue Jan  3 01:36:30 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| scaler_int           | xgb        | 0.89471    | 0.00081    | T  | subsample=0.5, max_depth=2, reg_alpha=0.6, scale_pos_weight=1, min_child_weight=1, missing=nan, objective=reg:linear, colsample_bylevel=0.6, reg_lambda=1, colsample_bytree=0.6, learning_rate=0.1, nthread=-1, n_estimators=20, base_score=0.5, silent=True
+
+Total execution time: 0.6168686151504517 minutes
+
+
+============================================================================================================================================
+Project: cs570
+Date: Tue Jan  3 01:49:31 2017
+Random state: 2016
+Target transform: None
+Parameter optimization: True
+Train data shape: 160000, 52
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+
+============================================================================================================================================
+Project: allstate
+Date: Tue Jan  3 12:23:51 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| none                 | xgb        | 0.89471    | 0.00081    | T  | reg_alpha=0.6, scale_pos_weight=1, learning_rate=0.1, colsample_bytree=0.6, base_score=0.5, missing=nan, reg_lambda=1, subsample=0.5, colsample_bylevel=0.6, silent=True, objective=reg:linear, max_depth=2, nthread=-1, min_child_weight=1, n_estimators=20
+| none                 | lr         | 0.38346    | 0.00124    | T  | copy_X=True, n_jobs=1                                                 
+
+Total execution time: 1.4348820686340331 minutes
+
+
+============================================================================================================================================
+Project: allstate_desde_cero
+Date: Tue Jan  3 12:26:53 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+Backend Qt5Agg is interactive backend. Turning interactive mode on.
+   cat1  cat10  cat100  cat101  cat102  cat103  cat104  cat105  cat106  \
+0     0      0       1       6       0       0       8       4       6   
+1     0      1      11       5       0       0       4       4       8   
+4     0      1       5       9       0       0       3       4      10   
+5     0      0       9       3       0       0       4       4       7   
+6     0      0       9       0       0       2       4       4       7   
+
+   cat107  ...    cont13    cont14  cont2  cont3  cont4  cont5     cont6  \
+0       9  ...       267  0.714843     21     25     70      4  0.718367   
+1      10  ...       188  0.304496     29     46     49     86  0.438917   
+4       6  ...        74  0.432606     19     43     35     52  0.178193   
+5       5  ...       110  0.726792     28     48     25      3  0.364464   
+6       5  ...       109  0.382931     29     47      2      2  0.381515   
+
+      cont7  cont8  cont9  
+0  0.335060     14    232  
+1  0.436585     66    101  
+4  0.247408      2     38  
+5  0.401162      7    148  
+6  0.363768      2    123  
+
+[5 rows x 130 columns]
+
+
+============================================================================================================================================
+Project: allstate_desde_cero
+Date: Tue Jan  3 12:43:15 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| scaler_int           | xgb        | 0.89471    | 0.00081    | T  | reg_lambda=1, reg_alpha=0.6, base_score=0.5, nthread=-1, objective=reg:linear, colsample_bytree=0.6, max_depth=2, silent=True, n_estimators=20, colsample_bylevel=0.6, scale_pos_weight=1, min_child_weight=1, subsample=0.5, missing=nan, learning_rate=0.1
+
+Total execution time: 1.9793798804283143 minutes
+
+
+============================================================================================================================================
+Project: allstate
+Date: Tue Jan  3 12:52:06 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| limpia               | lr         | 0.38346    | 0.00124    | T  | n_jobs=1, copy_X=True                                                 
+| limpia               | xgb        | 0.89471    | 0.00081    | T  | missing=nan, scale_pos_weight=1, objective=reg:linear, subsample=0.5, max_depth=2, n_estimators=20, nthread=-1, reg_alpha=0.6, min_child_weight=1, learning_rate=0.1, colsample_bytree=0.6, silent=True, reg_lambda=1, base_score=0.5, colsample_bylevel=0.6
+
+Total execution time: 2.8592968742052713 minutes
+
+
+============================================================================================================================================
+Project: allstate
+Date: Tue Jan  3 12:59:28 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+
+============================================================================================================================================
+Project: allstate
+Date: Tue Jan  3 13:00:44 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+
+============================================================================================================================================
+Project: allstate
+Date: Tue Jan  3 23:43:54 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+
+============================================================================================================================================
+Project: allstate
+Date: Tue Jan  3 23:46:37 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| limpia_y_modelStaking | elastic_net | 0.37978    | 0.00162    | T  | tol=0.0001, max_iter=1000, selection=cyclic, copy_X=True, fit_intercept=True
+
+Total execution time: 45.856472837924954 minutes

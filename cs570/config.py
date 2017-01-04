@@ -125,9 +125,16 @@ META_PARAMETERS = {
         'p': [1, 2]
     },
     'xgb': {
-        'n_estimators': [10 , 20],
-        'max_depth':[5,10,15,20,25],
-        'min_child_weight':[1,3,5,7],
-
+        'n_estimators': [20,100],
+        'max_depth':[25],
+        'min_child_weight':[1],
+        'gamma':[0,0.05,0.1,0.3,0.5,0.7,0.9,1],
+        'subsample':[0.5,0.6,0.7,0.8,0.9,1],
+        'colsample_bytree':[0.5,0.6,0.7,0.8,0.9,1],
+        'reg_lambda':[0.01,0.05,0.1,0.3,0.5,0.7,0.9,1],
+        'reg_alpha':[0,0.1,0.5,1]
     }
 }
+
+
+
