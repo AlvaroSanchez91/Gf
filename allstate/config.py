@@ -61,7 +61,7 @@ PREPROCESSING = [
 ]
 MODELS = {
     #('lr', LinearRegression(fit_intercept=True)),
-    #('xgb', XGBRegressor()),
+    ('xgb', XGBRegressor()),
 
     #('lasso', Lasso(fit_intercept=True)),
     #('ridge', Ridge(fit_intercept=True)),
@@ -114,13 +114,13 @@ META_PARAMETERS = {
 
     'xgb': {
         #'n_estimators': [10 , 20],
-        'min_child_weight':[1],
+        'min_child_weight':[1,3],
         #'eta': [0.01],
-        'colsample_bytree': [0.5],
-        'max_depth': [12],
+        'colsample_bytree': [0.5,0.6],
+        'max_depth': [7,12],
         'subsample': [0.8],
-        'reg_alpha': [1],
-        'gamma': [1],
+        'reg_alpha': [0.5,1],
+        'gamma': [0.5,1],
         'silent': [1],
         #'verbose_eval': [True],
         #'seed': RANDOM_STATE

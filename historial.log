@@ -7251,3 +7251,34 @@ Train data shape: 188318, 133
 
 | Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
 | -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+
+============================================================================================================================================
+Project: allstate
+Date: Thu Jan  5 00:51:24 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+Total execution time: 0.0055169820785522464 minutes
+
+
+============================================================================================================================================
+Project: allstate
+Date: Thu Jan  5 00:51:47 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| select20_modelstaking | xgb        | 0.34109    | 0.00219    | T  | min_child_weight=1, gamma=1, scale_pos_weight=1, reg_lambda=1, silent=1, base_score=0.5, nthread=-1, n_estimators=100, missing=nan, learning_rate=0.1, objective=reg:linear, max_depth=12, subsample=0.8, colsample_bylevel=1, colsample_bytree=0.6, reg_alpha=0.5
+
+Total execution time: 184.2658560713132 minutes
