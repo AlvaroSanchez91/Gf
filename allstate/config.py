@@ -21,7 +21,7 @@ from feature_selection import TreeBased
 import persistance
 import os
 
-from feature_transform import LogTransform , ImputerTransform, ModelStakingLevel1, ModelStakingLevel1_regresor, LabelTransform, Drop_labels, filter_remove
+from feature_transform import LogTransform , ImputerTransform, ModelStakingLevel1, ModelStakingLevel1_regresor, LabelTransform, Drop_labels, filter_remove, Columm_of_KMeans
 
 DATA_DIR = 'allstate/data'
 DATA_READER = persistance.FileReader
@@ -47,6 +47,7 @@ FEATURE_SELECTION_N = 20
 PREPROCESSING = [
 
     ('select20_modelstaking', [
+            ('Columm_of_KMeans',Columm_of_KMeans())
             #('Drop_labels',Drop_labels()),
             #('eliminoNaN',ImputerTransform()),
             #('LabelTransform', LabelTransform(columns=['cat%d' % i for i in range(1, 117)])),
@@ -114,13 +115,13 @@ META_PARAMETERS = {
 
     'xgb': {
         #'n_estimators': [10 , 20],
-        'min_child_weight':[1,3],
+        'min_child_weight':[3],
         #'eta': [0.01],
-        'colsample_bytree': [0.5,0.6],
-        'max_depth': [7,12],
+        'colsample_bytree': [0.6],
+        'max_depth': [12],
         'subsample': [0.8],
-        'reg_alpha': [0.5,1],
-        'gamma': [0.5,1],
+        'reg_alpha': [1],
+        'gamma': [1],
         'silent': [1],
         #'verbose_eval': [True],
         #'seed': RANDOM_STATE
