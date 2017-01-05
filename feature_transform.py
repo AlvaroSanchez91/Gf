@@ -21,6 +21,8 @@ from sklearn.neighbors import KNeighborsRegressor
 from xgboost import XGBRegressor
 
 from helpers import  split_data
+
+from sklearn.cluster import KMeans
 #hasta aqui
 
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -170,6 +172,24 @@ class ModelStakingLevel1_regresor(BaseEstimator, TransformerMixin):
         X2['prediction_KNN'] = prediction_KNN
 
 
+        return X2
+
+
+#La situiente clase es para añadir una columna con los resultados de un clusttering.
+
+class Columm_of_KMeans(BaseEstimator, TransformerMixin):
+
+    def __init__(self, columns=None):
+        self.my_KMeans_algoritm=None
+
+    def fit(self, X, y):
+        self.my_KMeans_algoritm=KMeans().fit(X).predict
+        return self
+
+    def transform(self, X):
+        X2=pd.DataFrame(X)
+        prediction_KMeans=self.my_KMeans_algoritm(X)
+        X2['prediction_KMeans'] = prediction_KMeans
         return X2
 
 #La siguiente clase la defino para eliminar la columna id
