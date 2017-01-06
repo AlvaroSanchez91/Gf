@@ -6,7 +6,7 @@ import pickle as pk
 import os
 from helpers import  get_config
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.ensemble import GradientBoostingRegressor, GradientBoostingClassifier
 #clf = ensemble.GradientBoostingRegressor()
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.svm import SVC
@@ -41,20 +41,10 @@ class DummyId(BaseEstimator, TransformerMixin):
 
         return X
 
-class Elimina_Filas(BaseEstimator, TransformerMixin):
+#A continuación aparecen una serie de clases que he definido:
 
-    def __init__(self, columns=None):
-        self.columns = columns
-
-    def fit(self, X, y):
-        return self
-
-    def transform(self, X):
-        X=X.drop(X.index[list(range(900,160000))])
-
-        return X
-
-class GuardaDatosProcesados(BaseEstimator, TransformerMixin):
+#La siguiente clase sirve para guardar los datos en cualquier punto del prerocessing.
+class save_processed_data(BaseEstimator, TransformerMixin):
 
     def __init__(self, columns=None, nombre="cs570con20colum.csv"):
         self.columns = columns
@@ -64,21 +54,18 @@ class GuardaDatosProcesados(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X):
-        config = get_config()
-        #np.savetxt("C:\\Users\\Usuario\Desktop\cs570con20colum.csv", X, delimiter=",")
-        data=pd.DataFrame(X).copy()
-        #data.to_csv(os.path.join(config.DATA_DIR, "processed.csv"), index=False)
-        data.to_csv(self.nombre, index=False)
 
+        data=pd.DataFrame(X).copy()
+        data.to_csv(self.nombre, index=False)
         return X
 
-class ModelStakingLevel1(BaseEstimator, TransformerMixin):
+#La siguiente clase añade columnas con los resultados de diversos modelos de machine learning para problemas de clasificacion.
+class ModelStackingLevel1(BaseEstimator, TransformerMixin):
 
     def __init__(self, columns=None):
         self.columns = columns
-        #self.rf_algoritmo=None
         self.my_rf_algoritm=None
-        self.my_GradientBoostingRegressor_algoritm=None
+        self.c=None
         self.my_AdaBoostClassifier_algoritm=None
         self.my_SVC_algoritm=None
         self.my_BaggingClassifier_algoritm=None
@@ -86,46 +73,32 @@ class ModelStakingLevel1(BaseEstimator, TransformerMixin):
 
 
     def fit(self, X, y):
-        #self.rf_algoritmo=RandomForestClassifier().fit(X,y).predict
         self.my_rf_algoritm=RandomForestClassifier().fit(X,y).predict
-        self.my_GradientBoostingRegressor_algoritm=GradientBoostingRegressor().fit(X,y).predict
+        self.my_GradientBoostingClassifier_algoritm=GradientBoostingClassifier().fit(X,y).predict
         self.my_AdaBoostClassifier_algoritm=AdaBoostClassifier().fit(X,y).predict
         self.my_SVC_algoritm=SVC().fit(X,y).predict
         self.my_BaggingClassifier_algoritm=BaggingClassifier().fit(X,y).predict
         self.my_LogisticRegression_algoritm=LogisticRegression().fit(X,y).predict
-
-
         return self
 
     def transform(self, X):
-        #model_rf = pk.load(open("cs570/models\\rf_0.32241.pk", "rb"))
-        #X_sin_y=X.drop('y', axis=1,inplace=True).copy()
-        #predict = model_rf.predict(X_sin_y)
-        #X['predict_rf'] = predict
-
-        #X_guardada=pd.read_csv('cs570con20colum.csv')
-        #y_guardada=pd.read_csv('Ycs570.csv')
         X2=pd.DataFrame(X)
-        #predicciones_rf=self.rf_algoritmo(X)
         prediction_rf=self.my_rf_algoritm(X)
-        prediction_GradientBoostingRegressor=self.my_GradientBoostingRegressor_algoritm(X)
+        prediction_GradientBoostingClassifier=self.my_GradientBoostingClassifier_algoritm(X)
         prediction_AdaBoostClassifier=self.my_AdaBoostClassifier_algoritm(X)
         prediction_SVC=self.my_SVC_algoritm(X)
         prediction_BaggingClassifier=self.my_BaggingClassifier_algoritm(X)
         prediction_LogisticRegression=self.my_LogisticRegression_algoritm(X)
-
-
         X2['prediction_rf'] = prediction_rf
-        X2['prediction_GradientBoostingRegressor'] = prediction_GradientBoostingRegressor
+        X2['prediction_GradientBoostingClassifier'] = prediction_GradientBoostingClassifier
         X2['prediction_AdaBoostClassifier'] = prediction_AdaBoostClassifier
         X2['prediction_SVC'] = prediction_SVC
         X2['prediction_BaggingClassifier'] = prediction_BaggingClassifier
         X2['prediction_LogisticRegression'] = prediction_LogisticRegression
-
-
         return X2
 
-class ModelStakingLevel1_regresor(BaseEstimator, TransformerMixin):
+#La siguiente clase añade columnas con los resultados de diversos modelos de machine learning para problemas de regresion.
+class ModelStackingLevel1_regressor(BaseEstimator, TransformerMixin):
 
     def __init__(self, columns=None):
         self.my_rf_algoritm=None
@@ -135,7 +108,6 @@ class ModelStakingLevel1_regresor(BaseEstimator, TransformerMixin):
         self.my_XGBregresor_algoritm=None
         self.my_KNN_algoritm=None
 
-
     def fit(self, X, y):
         self.my_rf_algoritm=RandomForestRegressor().fit(X,y).predict
         self.my_GradientBoostingRegressor_algoritm=GradientBoostingRegressor().fit(X,y).predict
@@ -143,18 +115,9 @@ class ModelStakingLevel1_regresor(BaseEstimator, TransformerMixin):
         self.my_linearRegressor_algoritm=LinearRegression().fit(X,y).predict
         self.my_XGBregresor_algoritm=XGBRegressor().fit(X,y).predict
         self.my_KNN_algoritm=KNeighborsRegressor().fit(X,y).predict
-
-
         return self
 
     def transform(self, X):
-        #model_rf = pk.load(open("cs570/models\\rf_0.32241.pk", "rb"))
-        #X_sin_y=X.drop('y', axis=1,inplace=True).copy()
-        #predict = model_rf.predict(X_sin_y)
-        #X['predict_rf'] = predict
-
-        #X_guardada=pd.read_csv('cs570con20colum.csv')
-        #y_guardada=pd.read_csv('Ycs570.csv')
         X2=pd.DataFrame(X)
         prediction_rf=self.my_rf_algoritm(X)
         prediction_GradientBoostingRegressor=self.my_GradientBoostingRegressor_algoritm(X)
@@ -162,21 +125,16 @@ class ModelStakingLevel1_regresor(BaseEstimator, TransformerMixin):
         prediction_linearRegressor=self.my_linearRegressor_algoritm(X)
         prediction_XGBregresor=self.my_XGBregresor_algoritm(X)
         prediction_KNN=self.my_KNN_algoritm(X)
-
-
         X2['prediction_rf'] = prediction_rf
         X2['prediction_GradientBoostingRegressor'] = prediction_GradientBoostingRegressor
         X2['prediction_ElasticNet'] = prediction_ElasticNet
         X2['prediction_linearRegressor'] = prediction_linearRegressor
         X2['prediction_XGBregresor'] = prediction_XGBregresor
         X2['prediction_KNN'] = prediction_KNN
-
-
         return X2
 
 
 #La situiente clase es para añadir una columna con los resultados de un clusttering.
-
 class Columm_of_KMeans(BaseEstimator, TransformerMixin):
 
     def __init__(self, columns=None):
@@ -244,12 +202,11 @@ class Drop_labels(BaseEstimator, TransformerMixin):
         return X
 
 
-
-class strings_a_floats(BaseEstimator, TransformerMixin):
+#Para sustituir numeros reales en forma de string por floats:
+class strings_to_floats(BaseEstimator, TransformerMixin):
 
     def __init__(self, columns=None):
         self.columns = columns
-
 
     def fit(self, X, y):
         return self
@@ -265,7 +222,8 @@ class strings_a_floats(BaseEstimator, TransformerMixin):
 
         return X
 
-class Mi_EliminaNaN(BaseEstimator, TransformerMixin):
+#Para reemplazar datos con valores perdidos:
+class My_replaceNaN1(BaseEstimator, TransformerMixin):
 
     def __init__(self, columns=None):
         self.columns = columns
@@ -303,8 +261,8 @@ class Mi_EliminaNaN(BaseEstimator, TransformerMixin):
         return y
 
 
-
-class Mi_EliminaNaN2(BaseEstimator, TransformerMixin):
+#Para reemplazar datos con valores perdidos:
+class My_replaceNaN2(BaseEstimator, TransformerMixin):
 
     def __init__(self, columns=None):
         self.columns = columns
@@ -342,7 +300,8 @@ class Mi_EliminaNaN2(BaseEstimator, TransformerMixin):
         return y
 
 
-class Mi_MataNaN(BaseEstimator, TransformerMixin):
+#Para eliminar datos con valores perdidos:
+class My_DropNan(BaseEstimator, TransformerMixin):
 
     def __init__(self, columns=None):
         self.columns = columns
@@ -358,20 +317,7 @@ class Mi_MataNaN(BaseEstimator, TransformerMixin):
         return y
 
 
-class Drop_Borrar(BaseEstimator, TransformerMixin):
-
-    def __init__(self, columns=None):
-        self.columns = columns
-
-
-    def fit(self, X, y):
-        return self
-
-    def transform(self, X):
-        return X[['x1','x2','x3']]
-
-    def invert_transform(self, y):
-        return y
+#Aquí terminan las clases definidas por mi
 
 class RemoveStringsTransform(BaseEstimator, TransformerMixin):
 

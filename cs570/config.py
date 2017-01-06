@@ -6,12 +6,14 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import log_loss
 from sklearn.metrics import make_scorer
 from sklearn.preprocessing import StandardScaler
-from xgboost import XGBRegressor
+from xgboost import XGBRegressor, XGBClassifier
 from sklearn.metrics import median_absolute_error
+from sklearn.metrics import auc
+
 
 from feature_selection import TreeBased
 import persistance
-from feature_transform import LogTransform ,ModelStakingLevel1 ,GuardaDatosProcesados ,DummyId,LabelTransform, InteractionTransform, RemoveStringsTransform,strings_a_floats,Mi_EliminaNaN, Mi_EliminaNaN2
+from feature_transform import ImputerTransform, LogTransform ,ModelStackingLevel1 ,save_processed_data ,DummyId,LabelTransform, InteractionTransform, RemoveStringsTransform,strings_to_floats,My_replaceNaN1, My_replaceNaN2, My_DropNan
 
 DATA_DIR = 'cs570/data'
 DATA_READER = persistance.FileReader
@@ -28,7 +30,9 @@ NEED_PROBA = False
 TARGET = "y"
 TARGET_TRANSFORM = None
 
-SCORER = make_scorer(median_absolute_error, greater_is_better=False)
+
+SCORER = make_scorer(auc, greater_is_better=False)
+#SCORER = make_scorer(median_absolute_error, greater_is_better=False)
 #SCORER = make_scorer(log_loss,
  #                    needs_proba=True,
   #                   greater_is_better=False)
@@ -39,22 +43,11 @@ JOBS = 2
 FEATURE_SELECTION_N = 20
 
 PREPROCESSING = [
-
-    #('none', [] ),
-
-    #('select', [
-    #    ('fs',  TreeBased('extra_trees_regressor', 20, 20)),
-    #]),
-
-
-    ('scaler_int', [
-        #('Drop_Borrar',Drop_Borrar()),
-        #('Mi_MataNaN',Mi_MataNaN()),
-        #('Elimina_Filas',Elimina_Filas()),
+    ('My_preprocessing', [
+        #('My_DropNan',My_DropNan()),
         ('rep',RemoveStringsTransform(strings=['$','%'],columns=['x32','x37'])),
-        ('qutastrings',strings_a_floats(columns=['x32','x37'])),
-        ('eliminoNaN',Mi_EliminaNaN()),
-
+        ('qutastrings',strings_to_floats(columns=['x32','x37'])),
+        ('eliminoNaN',ImputerTransform()),
         ('LabelTransform',LabelTransform( columns=['x24','x29','x30'])),
         #('inter', InteractionTransform(
          #   interactions=['sum'],
@@ -62,19 +55,9 @@ PREPROCESSING = [
         #('std', StandardScaler()),
         #('fs', TreeBased('extra_trees_regressor', 20, 20)),
         #('GuardaDatosProcesados', GuardaDatosProcesados()),
-        #('ModelStakingLevel1', ModelStakingLevel1()),
-        #('GuardaDatosProcesados2', GuardaDatosProcesados(nombre="cs570con20colum2.csv")),
+        #('ModelStackingLevel1', ModelStackingLevel1()),
+        #('GuardaDatosProcesados2', save_processed_data(nombre="cs570con20colum2.csv")),
     ])
-
-    #('scaler', [
-     #   ('std', StandardScaler()),
-
-    #]),
-
-    #('scaler_fs', [
-     #   ('std', StandardScaler()),
-      #  ('fs', TreeBased('extra_trees_regressor', 20, 20)),
-    #]),
 
 ]
 
@@ -83,7 +66,8 @@ MODELS = {
     #('lr', LogisticRegression(fit_intercept=True, solver='newton-cg',
      #                         multi_class='multinomial')),
     #('rf', RandomForestClassifier(random_state=RANDOM_STATE)),
-    ('xgb', XGBRegressor()),
+    #('xgb', XGBRegressor()),
+    ('xgbc', XGBClassifier()),
 
 }
 
@@ -125,15 +109,25 @@ META_PARAMETERS = {
         'p': [1, 2]
     },
     'xgb': {
-        'n_estimators': [20,100],
+        'n_estimators': [20],
         'max_depth':[25],
-        'min_child_weight':[1],
-        'gamma':[0,0.05,0.1,0.3,0.5,0.7,0.9,1],
-        'subsample':[0.5,0.6,0.7,0.8,0.9,1],
-        'colsample_bytree':[0.5,0.6,0.7,0.8,0.9,1],
-        'reg_lambda':[0.01,0.05,0.1,0.3,0.5,0.7,0.9,1],
-        'reg_alpha':[0,0.1,0.5,1]
-    }
+        'min_child_weight':[1,3],
+        'gamma':[0,1],
+        'subsample':[0.5,1],
+        'colsample_bytree':[0.5,1],
+        'reg_lambda':[0.01,1],
+        'reg_alpha':[0,1]
+    },
+    'xgbc': {
+        'n_estimators': [20],
+        'max_depth':[25],
+        'min_child_weight':[1,3],
+        'gamma':[0,1],
+        'subsample':[0.5,1],
+        'colsample_bytree':[0.5,1],
+        'reg_lambda':[0.01,1],
+        'reg_alpha':[0,1]
+    },
 }
 
 

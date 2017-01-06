@@ -7311,3 +7311,35 @@ Train data shape: 188318, 133
 | select20_modelstaking | xgb        | 0.34108    | 0.00195    | T  | n_estimators=100, reg_lambda=1, missing=nan, nthread=-1, colsample_bylevel=1, scale_pos_weight=1, base_score=0.5, subsample=0.8, max_depth=12, gamma=1, min_child_weight=3, reg_alpha=1, learning_rate=0.1, objective=reg:linear, colsample_bytree=0.6, silent=1
 
 Total execution time: 14.19509524901708 minutes
+
+
+============================================================================================================================================
+Project: cs570
+Date: Thu Jan  5 14:40:33 2017
+Random state: 2016
+Target transform: None
+Parameter optimization: True
+Train data shape: 160000, 52
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| scaler_int           | xgb        | 0.06155    | 0.00092    | T  | missing=nan, base_score=0.5, objective=reg:linear, max_depth=25, subsample=1, nthread=-1, min_child_weight=1, n_estimators=20, reg_lambda=0.01, colsample_bytree=1, scale_pos_weight=1, learning_rate=0.1, silent=True, colsample_bylevel=1
+
+Total execution time: 246.67702578703563 minutes
+
+
+============================================================================================================================================
+Project: cs570
+Date: Thu Jan  5 22:17:30 2017
+Random state: 2016
+Target transform: None
+Parameter optimization: True
+Train data shape: 160000, 52
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| scaler_int           | xgbc       | 0.00000    | 0.00000    | T  | subsample=0.5, silent=True, reg_lambda=0.01, scale_pos_weight=1, n_estimators=20, learning_rate=0.1, colsample_bylevel=1, base_score=0.5, colsample_bytree=0.5, max_depth=25, min_child_weight=1, nthread=-1, objective=binary:logistic, missing=nan
+
+Total execution time: 205.4957203467687 minutes

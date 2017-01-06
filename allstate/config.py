@@ -21,7 +21,7 @@ from feature_selection import TreeBased
 import persistance
 import os
 
-from feature_transform import LogTransform , ImputerTransform, ModelStakingLevel1, ModelStakingLevel1_regresor, LabelTransform, Drop_labels, filter_remove, Columm_of_KMeans
+from feature_transform import LogTransform , ImputerTransform, ModelStakingLevel1, ModelStackingLevel1_regressor, LabelTransform, Drop_labels, filter_remove, Columm_of_KMeans
 
 DATA_DIR = 'allstate/data'
 DATA_READER = persistance.FileReader
@@ -56,7 +56,7 @@ PREPROCESSING = [
                 #interactions=['sum'],
                 #columns=['cat%d' % i for i in range(20, 30)])),
             #('eliminoNaN',ImputerTransform()),
-            #('ModelStakingLevel1_regresor', ModelStakingLevel1_regresor()),
+            #('ModelStackingLevel1_regressor', ModelStackingLevel1_regressor()),
     ] ),
 
 ]
