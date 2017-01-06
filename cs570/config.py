@@ -31,8 +31,8 @@ TARGET = "y"
 TARGET_TRANSFORM = None
 
 
-SCORER = make_scorer(auc, greater_is_better=False)
-#SCORER = make_scorer(median_absolute_error, greater_is_better=False)
+#SCORER = make_scorer(auc, greater_is_better=True)
+SCORER = make_scorer(median_absolute_error, greater_is_better=False)
 #SCORER = make_scorer(log_loss,
  #                    needs_proba=True,
   #                   greater_is_better=False)
@@ -63,11 +63,11 @@ PREPROCESSING = [
 
 
 MODELS = {
-    #('lr', LogisticRegression(fit_intercept=True, solver='newton-cg',
-     #                         multi_class='multinomial')),
+    ('lr', LogisticRegression(fit_intercept=True, solver='newton-cg',
+                              multi_class='multinomial')),
     #('rf', RandomForestClassifier(random_state=RANDOM_STATE)),
     #('xgb', XGBRegressor()),
-    ('xgbc', XGBClassifier()),
+    #('xgbc', XGBClassifier()),
 
 }
 

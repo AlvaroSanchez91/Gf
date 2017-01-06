@@ -7343,3 +7343,45 @@ Train data shape: 160000, 52
 | scaler_int           | xgbc       | 0.00000    | 0.00000    | T  | subsample=0.5, silent=True, reg_lambda=0.01, scale_pos_weight=1, n_estimators=20, learning_rate=0.1, colsample_bylevel=1, base_score=0.5, colsample_bytree=0.5, max_depth=25, min_child_weight=1, nthread=-1, objective=binary:logistic, missing=nan
 
 Total execution time: 205.4957203467687 minutes
+
+
+============================================================================================================================================
+Project: cs570
+Date: Fri Jan  6 14:30:11 2017
+Random state: 2016
+Target transform: None
+Parameter optimization: True
+Train data shape: 160000, 52
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+
+============================================================================================================================================
+Project: cs570
+Date: Fri Jan  6 14:33:59 2017
+Random state: 2016
+Target transform: None
+Parameter optimization: True
+Train data shape: 160000, 52
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+
+
+============================================================================================================================================
+Project: cs570
+Date: Fri Jan  6 14:36:54 2017
+Random state: 2016
+Target transform: None
+Parameter optimization: True
+Train data shape: 160000, 52
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| My_preprocessing     | lr         | 0.00000    | 0.00000    | T  | multi_class=multinomial, tol=0.006, intercept_scaling=1, max_iter=100, fit_intercept=True, penalty=l2, C=200, solver=newton-cg, n_jobs=1
+
+Total execution time: 15.58350799481074 minutes
