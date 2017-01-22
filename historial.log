@@ -7385,3 +7385,19 @@ Train data shape: 160000, 52
 | My_preprocessing     | lr         | 0.00000    | 0.00000    | T  | multi_class=multinomial, tol=0.006, intercept_scaling=1, max_iter=100, fit_intercept=True, penalty=l2, C=200, solver=newton-cg, n_jobs=1
 
 Total execution time: 15.58350799481074 minutes
+
+
+============================================================================================================================================
+Project: allstate
+Date: Sun Jan 22 21:23:45 2017
+Random state: 2016
+Target transform: LogTransform
+Parameter optimization: True
+Train data shape: 188318, 133
+
+
+| Preprocess           | Model      | Score      | STD        | OP | Parameters                                                            
+| -------------------- | ---------- | ---------- | ---------- | -- | ----------------------------------------------------------------------
+| select20_modelstaking | xgb        | 0.34127    | 0.00191    | T  | subsample=0.8, objective=reg:linear, reg_alpha=1, learning_rate=0.1, reg_lambda=1, base_score=0.5, max_depth=12, n_estimators=100, gamma=1, missing=nan, colsample_bylevel=1, silent=1, min_child_weight=3, colsample_bytree=0.6, scale_pos_weight=1, nthread=-1
+
+Total execution time: 3.313828984896342 minutes
